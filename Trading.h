@@ -45,6 +45,7 @@ class Account
 
     vector<pair<string, int> > transactions;
 
+
 public:
 
     // Deposits money into account
@@ -107,6 +108,9 @@ public:
 
             balance -= bitcoin_value;
             invest += (bitcoin) * bitcoin_value;
+
+            cout << "Your investment value is now $" << invest << "." << endl;
+            cout << "Your available balance is now $" << balance << "." << endl;
             return true;
         }
 
@@ -126,8 +130,12 @@ public:
 
             balance -= ethereum_value;
             invest += (ethereum) * ethereum_value;
+
+            cout << "Your investment value is now $" << invest << "." << endl;
+            cout << "Your available balance is now $" << balance << "." << endl;
             return true;
         }
+
     }
 
     // Sell Crypto
@@ -144,10 +152,16 @@ public:
                 return false;
             }
 
+            int amount;
+            cout <<"How much would you like to sell?" << endl;
+            cin >> amount;
+            bitcoin -= amount;
+
             sell += bitcoin_value;
             balance += bitcoin_value;
-            transactions.push_back({"Bitcoin sold: ", bitcoin_value});
-            bitcoin -= 1;
+
+            cout << "Your loss value is now $" << sell << "." << endl;
+            cout << "Your balance is now $" << balance << "." << endl;
         }
 
         else if(option == 2)
@@ -157,10 +171,16 @@ public:
                 return false;
             }
 
+            int amount;
+            cout <<"How much would you like to sell?" << endl;
+            cin >> amount;
+            ethereum -= amount;
+
             sell += ethereum_value;
-            balance+= bitcoin_value;
-            transactions.push_back({"Ethereum sold: ", ethereum_value});
-            ethereum -= 1;
+            balance += ethereum_value;
+
+            cout << "Your loss value is now $" << sell << "." << endl;
+            cout << "Your balance is now $" << balance << "." << endl;
         }
 
         return true;
